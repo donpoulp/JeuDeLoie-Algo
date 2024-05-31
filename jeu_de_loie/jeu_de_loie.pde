@@ -1,8 +1,12 @@
 void setup() {
+  size (1200, 1200);
   int dé1;
   int dé2;
   int player;
   int plateau[] = new int[64];
+  plateau();
+}
+void draw(){
 }
 
 void playerSetup(int player) {
@@ -40,5 +44,12 @@ void Deplacement (int tab[], int dé1, int dé2, int player){
   } else {
     deplacement = deplacement + dé1 +dé2;
   }
-  
+  }
 }
+void plateau() {
+  int x ;
+  for (x = 0; x <1182; x = x+18) {
+    rect(x,50,18,100);
+  }
+}  
+  
