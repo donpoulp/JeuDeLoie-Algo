@@ -1,8 +1,9 @@
 void setup() {
-  size (1200, 1200);
+  size (1625, 500);
   int player;
   int TableauVide[] = new int[64];
   JeuDeLoie();
+  CreePlateau();
 }
 void draw() {
 }
@@ -93,7 +94,20 @@ int CoordoPlat(int tab[]) {
 }
 void CreePlateau() {
   int x ;
-  for (x = 0; x <1182; x = x+18) {
-    rect(x, 50, 18, 100);
+  for (x = 0; x <1620; x = x+25) {
+    rect(x, 50, 25, 100);
   }
+  fill (153);
+  text ("Départ", 1, 75, 25, 100);
+  text ("Puit", 76, 75, 95, 100);
+  text ("Oie", 226, 75, 245, 100);
+  text ("Oie", 451, 75, 470, 100);
+  text ("Oie", 676, 75, 695, 100);
+  text ("Oie", 901, 75, 920, 100);
+  text ("Laby", 1051, 75, 1070, 100);
+  text ("Oie", 1126, 75, 1145, 100);
+  text ("Prison", 1301, 75, 1320, 100);
+  text ("Oie", 1351, 75, 1370, 100);
+  text ("Mort", 1451, 75, 1470, 100);
+  text ("Arrivée", 1601, 75, 1625, 100);
 }
