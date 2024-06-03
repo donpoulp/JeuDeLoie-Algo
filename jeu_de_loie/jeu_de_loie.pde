@@ -1,12 +1,28 @@
 void setup() {
   size (1625, 500);
+  frameRate (15);
   int player;
   int TableauVide[] = new int[64];
-  JeuDeLoie();
   CreePlateau();
+  fill(#FBB7C2);
+  noStroke();
+  ellipse (x+12, y+110, 20,20); 
 }
-void draw() {
+
+
+
+
+int x=0;
+int y=0;
+
+
+
+void draw() { 
+  JeuDeLoie();
 }
+
+
+
 
 void playerSetup(int player) {
   if (player == 2) {
@@ -25,10 +41,18 @@ void playerSetup(int player) {
     String erreur = "Vous 'avez pas le nombre de joueurs requis pour lancer la partie";
   }
 }
+
+
+
+
 //Partie déplacement du jeu de l'oie
+
+
+
+
 void JeuDeLoie () {//fonction globale du jeu
   int deplacement = 0;
-  for (int i =0; i<100; i++) {
+  while (deplacement !=63) {
     int dé1 = int(random(6)+1);
     int dé2 = int(random(6)+1);
     deplacement = Deplacement(deplacement, dé1, dé2) ;
@@ -39,6 +63,7 @@ void JeuDeLoie () {//fonction globale du jeu
     }
     if (deplacement == 63) {
       WinShow();
+      noLoop();
       break;
     }
     if (deplacement == 19){
@@ -49,6 +74,9 @@ void JeuDeLoie () {//fonction globale du jeu
     }
   }
 }
+
+
+
 int Deplacement (int CaseDepart, int dé1, int dé2) {// Déplacement dé sans case spéciale
   int deplacement = CaseDepart + dé1 +dé2;
   if (dé1 == 6 && dé2 == 3 | dé1 == 3 && dé2 == 6) {
@@ -62,6 +90,10 @@ int Deplacement (int CaseDepart, int dé1, int dé2) {// Déplacement dé sans c
   deplacement = CaseSpe (deplacement, dé1, dé2);
   return deplacement;
 }
+
+
+
+
 int CaseSpe (int deplacement, int dé1, int dé2) {// Case spéciales
   if (deplacement%9 ==0 && deplacement != 63){
     deplacement = deplacement + dé1 + dé2;
@@ -77,21 +109,30 @@ int CaseSpe (int deplacement, int dé1, int dé2) {// Case spéciales
   }
 return deplacement;
 }
+
+
+
 void WinShow() { // Déclarer la victoire
   String win ="Vous avez gagné !";
   println (win);
 }
 
 // Partie visuelle
+
+
+
 int CoordoPlat(int tab[]) {
   int i ;
   int mid =0;
   for ( i=0; i <tab.length-1; i++) {
-    tab[i] = mid +9;
-    mid = mid+9;
+    tab[i] = mid +12;
+    mid = mid+13;
   }
   return tab[i];
 }
+
+
+
 void CreePlateau() {
   int x ;
   for (x = 0; x <1620; x = x+25) {
