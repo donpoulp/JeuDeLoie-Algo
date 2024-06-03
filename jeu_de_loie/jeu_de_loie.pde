@@ -1,47 +1,32 @@
+int deplacement = 0;
+int x=0;
+int y=0;
+
 void setup() {
   size (1625, 500);
   frameRate (15);
-  int player;
-  int TableauVide[] = new int[64];
   CreePlateau();
   fill(#FBB7C2);
   noStroke();
   ellipse (x+12, y+110, 20,20); 
 }
 
-
-
-
-int x=0;
-int y=0;
-
-
+void drawPawn(int position){
+  fill(#FBB7C2);
+  ellipse (x+12 + 25*position, y+110, 20,20);
+}
 
 void draw() { 
+  ClearPawn (deplacement);
   JeuDeLoie();
+  drawPawn(deplacement);
+  
 }
 
-
-
-
-void playerSetup(int player) {
-  if (player == 2) {
-    String Player1 = "Player1";
-    String Player2 = "Player2";
-  } else if (player ==3) {
-    String Player1 = "Player1";
-    String Player2 = "Player2";
-    String Player3 = "Player3";
-  } else if (player == 4) {
-    String Player1 = "Player1";
-    String Player2 = "Player2";
-    String Player3 = "Player3";
-    String Player4 = "Player4";
-  } else {
-    String erreur = "Vous 'avez pas le nombre de joueurs requis pour lancer la partie";
-  }
+void ClearPawn( int position){
+  fill (255);
+  ellipse (x+12 + 25*position, y+110, 20,20);
 }
-
 
 
 
@@ -51,20 +36,20 @@ void playerSetup(int player) {
 
 
 void JeuDeLoie () {//fonction globale du jeu
-  int deplacement = 0;
-  while (deplacement !=63) {
+  
+  
     int dé1 = int(random(6)+1);
     int dé2 = int(random(6)+1);
     deplacement = Deplacement(deplacement, dé1, dé2) ;
-    if (deplacement > 63) {
-      int surplus = (deplacement +(dé1 + dé2) -63);
-      deplacement = 63 - surplus;
+    if (deplacement > 64) {
+      int surplus = (deplacement +(dé1 + dé2) -64);
+      deplacement = 64 - surplus;
       println ("J.1 a fait plus de 63. Il retourne sur la case", deplacement);
     }
-    if (deplacement == 63) {
+    if (deplacement == 64) {
       WinShow();
       noLoop();
-      break;
+      return;
     }
     if (deplacement == 19){
       for (int x = 0; x < 2; x ++) {
@@ -72,7 +57,7 @@ void JeuDeLoie () {//fonction globale du jeu
         println ("Vous êtes arrivés sur l'hôtel ! Il vous reste", 2-x ,"tours avant de sortir !");
       }
     }
-  }
+  
 }
 
 
@@ -95,7 +80,7 @@ int Deplacement (int CaseDepart, int dé1, int dé2) {// Déplacement dé sans c
 
 
 int CaseSpe (int deplacement, int dé1, int dé2) {// Case spéciales
-  if (deplacement%9 ==0 && deplacement != 63){
+  if (deplacement%9 ==0 && deplacement != 64){
     deplacement = deplacement + dé1 + dé2;
     println ("Vous êtes tombés sur la case de l'oie ! Vous vous déplacez sur la case", deplacement);
   }
@@ -119,7 +104,10 @@ void WinShow() { // Déclarer la victoire
 
 // Partie visuelle
 
-
+void PawnMv(int mv){
+  int MvPawn;
+  MvPawn = (mv*25)+10;
+}
 
 int CoordoPlat(int tab[]) {
   int i ;
